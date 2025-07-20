@@ -7,16 +7,17 @@ import { NumberedList } from './components/lists/Numbered';
 import { RegularList } from './components/lists/Regular';
 import { authors } from './data/authors';
 import { books } from './data/books';
+import { Modal } from './Modal';
 
 
 
 function App(){
   return(
     <>  
-      <RegularList items={authors} sourceName={"author"} ItemComponent={SmallAuthorListItem}></RegularList>
-      <NumberedList items={authors} sourceName={"author"} ItemComponent={LargeAuthorListItem}></NumberedList>
-      <RegularList items={books} sourceName={"book"} ItemComponent={SmallBookListItem}></RegularList>
-      <NumberedList items={books} sourceName={"book"} ItemComponent={LargeBookListItem}></NumberedList>
+      <Modal>
+        <LargeBookListItem book={books[0]}></LargeBookListItem>
+      </Modal>
+      
     </>
   );
 };
