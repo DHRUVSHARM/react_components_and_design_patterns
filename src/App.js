@@ -1,23 +1,30 @@
 import './App.css';
 import { LargeAuthorListItem } from './components/authors/LargeListItems';
 import { SmallAuthorListItem } from './components/authors/SmallListItems';
+import { BookInfo } from './components/book-info';
 import { LargeBookListItem } from './components/books/LargeListItems';
 import { SmallBookListItem } from './components/books/SmallListItems';
+import { CurrentUserLoader } from './components/current-user-loader';
 import { NumberedList } from './components/lists/Numbered';
 import { RegularList } from './components/lists/Regular';
+import { ResourceLoader } from './components/resource-loader';
+import { UserInfo } from './components/user-info';
+import { UserLoader } from './components/user-loader';
 import { authors } from './data/authors';
 import { books } from './data/books';
 import { Modal } from './Modal';
 
 
-
 function App(){
   return(
     <>  
-      <Modal>
-        <LargeBookListItem book={books[0]}></LargeBookListItem>
-      </Modal>
-      
+      <ResourceLoader resourceUrl={"/users/1"} resourceName={"user"}>
+        <UserInfo></UserInfo>
+      </ResourceLoader>
+
+      <ResourceLoader resourceUrl={"/books/2"} resourceName={"book"}>
+        <BookInfo></BookInfo>
+      </ResourceLoader>
     </>
   );
 };
@@ -25,6 +32,28 @@ function App(){
 
 export default App;
 
+
+/*
+function App(){
+  return(
+    <>  
+      <UserLoader userId={"3"}>
+         <UserInfo></UserInfo>
+      </UserLoader>
+      <UserLoader userId={"2"}>
+         <UserInfo></UserInfo>
+      </UserLoader>
+      <UserLoader userId={"1"}>
+         <UserInfo></UserInfo>
+      </UserLoader>
+       
+    </>
+  );
+};
+
+
+export default App;
+*/
 
 /*
 const LeftSideComp = ({title}) => {
