@@ -13,19 +13,46 @@ import { UserLoader } from './components/user-loader';
 import { authors } from './data/authors';
 import { books } from './data/books';
 import { Modal } from './Modal';
+import { DataSourceWithRender } from './components/data-source-with-render';
+import axios from 'axios';
+import { DataSource } from './components/data-source';
 
+// fetching method from the server can be extracted out like this
+const getDataFromServerAxios = async (url) => {
+  const response = await axios.get(url);
+  return response.data;
+}
+
+const getDataFromLocalStorage = (key) => {
+  return localStorage.getItem(key);
+}
+
+
+const Message = ({message}) => {
+  return(
+    <h1>{message}</h1>
+  )
+}
 
 function App(){
   return(
     <>  
-      <ResourceLoader resourceUrl={"/users/1"} resourceName={"user"}>
-        <UserInfo></UserInfo>
-      </ResourceLoader>
+    { /* similar functionality with the render props pattern */ }
+      <DataSourceWithRender 
+        getData={() => getDataFromServerAxios("users/3")} 
+        render = {(resource) => <UserInfo user={resource} />}
+      >
+      </DataSourceWithRender>
 
-      <ResourceLoader resourceUrl={"/books/2"} resourceName={"book"}>
-        <BookInfo></BookInfo>
-      </ResourceLoader>
+      {/* data source where we can pass the component as well as the resource we want to load */}
+      <DataSource
+        getData={() => getDataFromLocalStorage("checking_key")} 
+        resourceName={"message"}
+      >
+        <Message></Message>
+      </DataSource>
     </>
+    
   );
 };
 
