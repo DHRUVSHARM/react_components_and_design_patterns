@@ -12,15 +12,21 @@ import { UserInfo } from './components/user-info';
 import { UserLoader } from './components/user-loader';
 import { authors } from './data/authors';
 import { books } from './data/books';
-import { Modal } from './Modal';
-import { DataSourceWithRender } from './components/data-source-with-render';
-import axios from 'axios';
+import { Modal } from './Modal'; 
 import { DataSource } from './components/data-source';
+import { UncontrolledForm } from './components/uncontrolled-form';
+import { ControlledForm } from './components/controlled-form';
+import OrgChartTree from './components/demo-tree';
+import { SplitScreenVertical, SvgCenteredWrapper } from './components/split-screen';
+import { ControlledModal } from './components/controlled-modal';
+import { useState } from 'react';
 
 // fetching method from the server can be extracted out like this
+/*
 const getDataFromServerAxios = async (url) => {
-  const response = await axios.get(url);
-  return response.data;
+  const response = await axios.get(url
+  );
+  return response.data;              
 }
 
 const getDataFromLocalStorage = (key) => {
@@ -33,32 +39,29 @@ const Message = ({message}) => {
     <h1>{message}</h1>
   )
 }
+*/
 
-function App(){
-  return(
-    <>  
-    { /* similar functionality with the render props pattern */ }
-      <DataSourceWithRender 
-        getData={() => getDataFromServerAxios("users/3")} 
-        render = {(resource) => <UserInfo user={resource} />}
-      >
-      </DataSourceWithRender>
 
-      {/* data source where we can pass the component as well as the resource we want to load */}
-      <DataSource
-        getData={() => getDataFromLocalStorage("checking_key")} 
-        resourceName={"message"}
-      >
-        <Message></Message>
-      </DataSource>
-    </>
-    
-  );
+
+
+
+function App() {
+    const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
+
+    return (
+        <>
+          <ControlledModal shouldDisplay={shouldDisplayModal} onClose={() => setShouldDisplayModal(false)} >
+            <h1>This is a controlled modal</h1>
+            <p>You can control its visibility from the parent component.</p>
+          </ControlledModal>
+
+          <button onClick={() => setShouldDisplayModal(!shouldDisplayModal)}>{shouldDisplayModal ? 'Hide Modal' : 'Show Modal'}</button>
+        </>
+    );
 };
 
 
 export default App;
-
 
 /*
 function App(){

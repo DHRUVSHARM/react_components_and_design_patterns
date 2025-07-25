@@ -11,7 +11,7 @@ as a wrapper and pass in other component or jsx into it
 import { useState } from "react"
 import styled from "styled-components";
 
-const ModalBackground = styled.div`
+export const ModalBackground = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -21,7 +21,7 @@ const ModalBackground = styled.div`
   height: 100%;
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   margin: 12% auto;
   padding: 24px;
   background-color: wheat;

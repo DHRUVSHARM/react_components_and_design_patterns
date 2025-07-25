@@ -1,0 +1,6 @@
+controlled and uncontrolled component patterns (think controlled or not by the parent): 
+
+uncontrolled : component manages its own internal state, like a form 
+manage your own state, using hooks for example , the props from the parent only will retrieve the values of the internal state, whern the event occurs
+
+controlled : parent controls state  
