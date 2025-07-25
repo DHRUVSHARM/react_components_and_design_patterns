@@ -44,7 +44,18 @@ const Message = ({message}) => {
 
 
 
+function App() {
+  return(
+    <>
+      <UserInfo userId={"3"} /> 
+    </>
+  )
+}
 
+export default App;
+
+
+/*
 function App() {
     const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
 
@@ -61,8 +72,9 @@ function App() {
 };
 
 
-export default App;
 
+export default App;
+*/
 /*
 function App(){
   return(
