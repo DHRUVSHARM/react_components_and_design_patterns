@@ -20,6 +20,8 @@ import OrgChartTree from './components/demo-tree';
 import { SplitScreenVertical, SvgCenteredWrapper } from './components/split-screen';
 import { ControlledModal } from './components/controlled-modal';
 import { useState } from 'react';
+import { UncontrolledFlow } from './components/uncontrolled-flow';
+
 
 // fetching method from the server can be extracted out like this
 /*
@@ -44,10 +46,46 @@ const Message = ({message}) => {
 
 
 
+
+const StepOne = ({goNext}) => {
+  return (
+    <>
+      <h1>Step One</h1>;
+      <button onClick={goNext}>Next</button>
+    </>
+  );
+  
+
+}
+
+const StepTwo = ({goNext}) => {
+
+  return (
+  <>
+    <h1>Step Two</h1>;
+    <button onClick={goNext}>Next</button>  
+  </>
+  );
+
+}
+
+const StepThree = ({goNext}) => {
+  return (
+    <>
+      <h1>Step Three</h1>;
+      <button onClick={goNext}>Next</button>
+    </>
+  )
+}
+
 function App() {
   return(
     <>
-      <UserInfo userId={"3"} /> 
+       <UncontrolledFlow>
+        <StepOne />
+        <StepTwo />
+        <StepThree />
+       </UncontrolledFlow>
     </>
   )
 }
