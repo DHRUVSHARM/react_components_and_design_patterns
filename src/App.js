@@ -46,24 +46,25 @@ const Message = ({message}) => {
 
 
 
-
+// collect name 
 const StepOne = ({goNext}) => {
   return (
     <>
-      <h1>Step One</h1>;
-      <button onClick={goNext}>Next</button>
+      <h1>Step One : Enter your name ...</h1>;
+      <button onClick={() => goNext({name : 'Dhruv Sharma'})}>Next</button>
     </>
   );
   
 
 }
 
+// collect age
 const StepTwo = ({goNext}) => {
 
   return (
   <>
-    <h1>Step Two</h1>;
-    <button onClick={goNext}>Next</button>  
+    <h1>Step Two : Enter your age ...</h1>;
+    <button onClick={() => goNext({age : 25})}>Next</button>  
   </>
   );
 
@@ -72,8 +73,8 @@ const StepTwo = ({goNext}) => {
 const StepThree = ({goNext}) => {
   return (
     <>
-      <h1>Step Three</h1>;
-      <button onClick={goNext}>Next</button>
+      <h1>Step Three : Enter your country ...</h1>;
+      <button onClick={() => goNext({country : 'USA'})}>Next</button>
     </>
   )
 }
@@ -81,7 +82,10 @@ const StepThree = ({goNext}) => {
 function App() {
   return(
     <>
-       <UncontrolledFlow>
+       <UncontrolledFlow onDone = {data => {
+        console.log("the data is collected as : " , data)
+        alert("data is collected !!!! " , data);
+       }}>
         <StepOne />
         <StepTwo />
         <StepThree />
